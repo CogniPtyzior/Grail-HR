@@ -1,0 +1,19 @@
+# EditorConfig keeps line endings, encodings and indentation consistent across the WordPress/DDEV project.
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+max_line_length = 152
+
+[*.{php,js,ts,vue,json,css,md,yml,yaml,xml,neon,dist}]
+indent_style = space
+indent_size = 4
+
+[*.{json,yml,yaml,neon}]
+indent_size = 2
+
+[Makefile]
+indent_style = tab

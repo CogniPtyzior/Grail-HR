@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- PHPUnit configuration for pure unit tests. WordPress integration tests can be added later with the WP test suite. -->
+<phpunit bootstrap="tests/php/bootstrap.php" colors="true" cacheDirectory=".phpunit.cache">
+    <testsuites>
+        <testsuite name="Grail HR Unit Tests">
+            <directory>tests/php/Unit</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>

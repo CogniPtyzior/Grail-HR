@@ -1,0 +1,23 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "DDEV start",
+      "type": "shell",
+      "command": "ddev start",
+      "problemMatcher": []
+    },
+    {
+      "label": "PHP tests",
+      "type": "shell",
+      "command": "cd wp-content/plugins/grail-hr && composer test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Nuxt dev",
+      "type": "shell",
+      "command": "cd wp-content/plugins/grail-hr/frontend/nuxt && npm run dev",
+      "problemMatcher": []
+    }
+  ]
+}

@@ -1,0 +1,199 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Grail HR CV Analysis V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "candidate",
+    "summary",
+    "career_targeting",
+    "seniority",
+    "experiences",
+    "education",
+    "skills",
+    "tools",
+    "know_how",
+    "soft_skills",
+    "languages",
+    "interests",
+    "warnings"
+  ],
+  "properties": {
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["full_name", "email", "phone", "location", "linkedin_url", "portfolio_url"],
+      "properties": {
+        "full_name": { "type": "string", "maxLength": 190 },
+        "email": { "type": "string", "maxLength": 190 },
+        "phone": { "type": "string", "maxLength": 80 },
+        "location": { "type": "string", "maxLength": 190 },
+        "linkedin_url": { "type": "string", "maxLength": 255 },
+        "portfolio_url": { "type": "string", "maxLength": 255 }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profile_title", "short_summary", "long_summary"],
+      "properties": {
+        "profile_title": { "type": "string", "maxLength": 190 },
+        "short_summary": { "type": "string", "maxLength": 350 },
+        "long_summary": { "type": "string", "maxLength": 900 }
+      }
+    },
+    "career_targeting": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["primary_job", "associated_jobs"],
+      "properties": {
+        "primary_job": { "$ref": "#/$defs/job" },
+        "associated_jobs": { "type": "array", "maxItems": 12, "items": { "$ref": "#/$defs/associated_job" } }
+      }
+    },
+    "seniority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["level", "years_experience_estimate", "confidence", "evidence"],
+      "properties": {
+        "level": { "type": "string", "enum": ["junior", "confirmed", "senior", "lead", "manager", "expert", "unknown"] },
+        "years_experience_estimate": { "type": ["integer", "null"], "minimum": 0, "maximum": 80 },
+        "confidence": { "$ref": "#/$defs/confidence" },
+        "evidence": { "type": "string", "maxLength": 220 }
+      }
+    },
+    "experiences": { "type": "array", "maxItems": 30, "items": { "$ref": "#/$defs/experience" } },
+    "education": { "type": "array", "maxItems": 20, "items": { "$ref": "#/$defs/education" } },
+    "skills": { "type": "array", "maxItems": 80, "items": { "$ref": "#/$defs/skill" } },
+    "tools": { "type": "array", "maxItems": 80, "items": { "$ref": "#/$defs/tool" } },
+    "know_how": { "type": "array", "maxItems": 40, "items": { "$ref": "#/$defs/simple_evidence" } },
+    "soft_skills": { "type": "array", "maxItems": 30, "items": { "$ref": "#/$defs/simple_evidence" } },
+    "languages": { "type": "array", "maxItems": 20, "items": { "$ref": "#/$defs/language" } },
+    "interests": { "type": "array", "maxItems": 20, "items": { "$ref": "#/$defs/interest" } },
+    "warnings": { "type": "array", "maxItems": 20, "items": { "$ref": "#/$defs/warning" } }
+  },
+  "$defs": {
+    "confidence": { "type": "string", "enum": ["low", "medium", "high"] },
+    "job": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "normalized_label", "confidence", "evidence"],
+      "properties": {
+        "label": { "type": "string", "maxLength": 190 },
+        "normalized_label": { "type": "string", "maxLength": 190 },
+        "confidence": { "$ref": "#/$defs/confidence" },
+        "evidence": { "type": "string", "maxLength": 180 }
+      }
+    },
+    "associated_job": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "normalized_label", "relation", "confidence", "rationale"],
+      "properties": {
+        "label": { "type": "string", "maxLength": 190 },
+        "normalized_label": { "type": "string", "maxLength": 190 },
+        "relation": {
+          "type": "string",
+          "enum": ["same_family", "natural_progression", "possible_reconversion", "adjacent_role", "management_path", "expert_path"]
+        },
+        "confidence": { "$ref": "#/$defs/confidence" },
+        "rationale": { "type": "string", "maxLength": 240 }
+      }
+    },
+    "experience": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "company", "role", "location", "start_date", "end_date", "is_current", "duration", "description",
+        "missions", "achievements", "technologies_or_tools", "confidence"
+      ],
+      "properties": {
+        "company": { "type": "string", "maxLength": 190 },
+        "role": { "type": "string", "maxLength": 190 },
+        "location": { "type": "string", "maxLength": 190 },
+        "start_date": { "type": "string", "maxLength": 30 },
+        "end_date": { "type": "string", "maxLength": 30 },
+        "is_current": { "type": "boolean" },
+        "duration": { "type": "string", "maxLength": 80 },
+        "description": { "type": "string", "maxLength": 500 },
+        "missions": { "type": "array", "maxItems": 6, "items": { "type": "string", "maxLength": 120 } },
+        "achievements": { "type": "array", "maxItems": 5, "items": { "type": "string", "maxLength": 140 } },
+        "technologies_or_tools": { "type": "array", "maxItems": 20, "items": { "type": "string", "maxLength": 120 } },
+        "confidence": { "$ref": "#/$defs/confidence" }
+      }
+    },
+    "education": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["school", "degree", "field", "start_year", "end_year", "description", "confidence"],
+      "properties": {
+        "school": { "type": "string", "maxLength": 190 },
+        "degree": { "type": "string", "maxLength": 190 },
+        "field": { "type": "string", "maxLength": 190 },
+        "start_year": { "type": ["integer", "null"], "minimum": 1900, "maximum": 2100 },
+        "end_year": { "type": ["integer", "null"], "minimum": 1900, "maximum": 2100 },
+        "description": { "type": "string", "maxLength": 300 },
+        "confidence": { "$ref": "#/$defs/confidence" }
+      }
+    },
+    "skill": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "category", "level", "evidence"],
+      "properties": {
+        "label": { "type": "string", "maxLength": 120 },
+        "category": { "type": "string", "enum": ["technical", "tool", "methodology", "domain", "other"] },
+        "level": { "type": "string", "enum": ["beginner", "intermediate", "advanced", "expert", "unknown"] },
+        "evidence": { "type": "string", "maxLength": 180 }
+      }
+    },
+    "tool": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "category", "evidence"],
+      "properties": {
+        "label": { "type": "string", "maxLength": 120 },
+        "category": { "type": "string", "enum": ["software", "platform", "framework", "method", "other"] },
+        "evidence": { "type": "string", "maxLength": 180 }
+      }
+    },
+    "simple_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "description", "evidence"],
+      "properties": {
+        "label": { "type": "string", "maxLength": 120 },
+        "description": { "type": "string", "maxLength": 240 },
+        "evidence": { "type": "string", "maxLength": 180 }
+      }
+    },
+    "language": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "level", "evidence"],
+      "properties": {
+        "label": { "type": "string", "maxLength": 120 },
+        "level": { "type": "string", "maxLength": 80 },
+        "evidence": { "type": "string", "maxLength": 180 }
+      }
+    },
+    "interest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "description"],
+      "properties": {
+        "label": { "type": "string", "maxLength": 120 },
+        "description": { "type": "string", "maxLength": 160 }
+      }
+    },
+    "warning": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "message"],
+      "properties": {
+        "type": { "type": "string", "enum": ["missing_information", "uncertain_extraction", "inconsistency", "other"] },
+        "message": { "type": "string", "maxLength": 220 }
+      }
+    }
+  }
+}

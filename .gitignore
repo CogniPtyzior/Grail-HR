@@ -1,0 +1,141 @@
+# WordPress/DDEV repository policy for Grail HR.
+# Keep only project configuration, documentation and the custom Grail HR plugin.
+
+*.zip
+
+# Keep demo CV archive for Grail HR public/demo data
+!wp-content/plugins/grail-hr/demo-data/
+!wp-content/plugins/grail-hr/demo-data/cv_demo_realistes.zip
+
+**/.phpunit.cache/
+
+# ---------------------------------------------------------------------------
+# WordPress core
+# ---------------------------------------------------------------------------
+/index.php
+/license.txt
+/readme.html
+/wp-activate.php
+/wp-blog-header.php
+/wp-comments-post.php
+/wp-config.php
+/wp-config.php.bak
+/wp-config-sample.php
+/wp-cron.php
+/wp-links-opml.php
+/wp-load.php
+/wp-login.php
+/wp-mail.php
+/wp-settings.php
+/wp-signup.php
+/wp-trackback.php
+/xmlrpc.php
+/wp-admin/
+/wp-includes/
+
+# ---------------------------------------------------------------------------
+# Local WordPress configuration and generated files
+# ---------------------------------------------------------------------------
+/wp-config-ddev.php
+/.htaccess
+/.user.ini
+/debug.log
+
+# ---------------------------------------------------------------------------
+# WordPress runtime content
+# ---------------------------------------------------------------------------
+/wp-content/index.php
+/wp-content/db.php
+/wp-content/languages/
+/wp-content/uploads/
+/wp-content/upgrade/
+/wp-content/cache/
+/wp-content/backups*/
+/wp-content/debug.log
+
+# ---------------------------------------------------------------------------
+# Plugins and themes
+# Keep only the custom Grail HR plugin.
+# No custom WordPress theme is versioned for this project.
+# ---------------------------------------------------------------------------
+/wp-content/plugins/*
+!/wp-content/plugins/grail-hr/
+
+/wp-content/themes/*
+
+# ---------------------------------------------------------------------------
+# Private runtime storage created by the plugin
+# ---------------------------------------------------------------------------
+/wp-content/grail-hr-private/
+
+# ---------------------------------------------------------------------------
+# Composer dependencies
+# For this development repository, dependencies are installed locally.
+# Release archives may include vendor/ separately if needed.
+# ---------------------------------------------------------------------------
+**/vendor/
+
+# ---------------------------------------------------------------------------
+# Node/Nuxt dependencies and generated artifacts
+# ---------------------------------------------------------------------------
+**/node_modules/
+**/.nuxt/
+**/.output/
+**/.nitro/
+**/.vite/
+**/coverage/
+
+# Generic dist folders are usually build artifacts.
+**/dist/
+
+# Keep the production app folder structure, but do not commit generated assets
+# unless intentionally preparing a distributable plugin release.
+!/wp-content/plugins/grail-hr/public/
+!/wp-content/plugins/grail-hr/public/app/
+/wp-content/plugins/grail-hr/public/app/*
+!/wp-content/plugins/grail-hr/public/app/.gitkeep
+
+# ---------------------------------------------------------------------------
+# DDEV
+# Keep useful project configuration and custom build/config folders.
+# ---------------------------------------------------------------------------
+/.ddev/*
+!/.ddev/config.yaml
+!/.ddev/docker-compose*.yaml
+!/.ddev/php/
+!/.ddev/php/*.ini
+!/.ddev/nginx_full/
+!/.ddev/nginx_full/*.conf
+!/.ddev/apache/
+!/.ddev/apache/*.conf
+!/.ddev/commands/
+!/.ddev/web-build/
+!/.ddev/db-build/
+
+# ---------------------------------------------------------------------------
+# IDE / editor
+# The project may commit selected VS Code workspace files.
+# ---------------------------------------------------------------------------
+/.idea/
+*.swp
+*.swo
+
+# Keep VS Code project configuration.
+!/.vscode/
+!/.vscode/extensions.json
+!/.vscode/launch.json
+!/.vscode/settings.json
+!/.vscode/tasks.json
+
+# ---------------------------------------------------------------------------
+# OS noise
+# ---------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+
+# ---------------------------------------------------------------------------
+# Environment and secrets
+# ---------------------------------------------------------------------------
+.env
+.env.*
+!.env.example

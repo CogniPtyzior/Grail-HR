@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!-- Coding style configuration. WordPress standards are used pragmatically for a modern namespaced plugin. -->
+<ruleset name="Grail HR">
+    <file>grail-hr.php</file>
+    <file>src</file>
+    <exclude-pattern>vendor/*</exclude-pattern>
+    <exclude-pattern>frontend/*</exclude-pattern>
+    <arg name="extensions" value="php" />
+    <arg name="colors" />
+    <rule ref="PSR12" />
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="152" />
+            <property name="absoluteLineLimit" value="180" />
+        </properties>
+    </rule>
+</ruleset>

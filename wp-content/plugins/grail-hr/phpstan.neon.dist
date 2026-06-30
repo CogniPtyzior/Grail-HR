@@ -1,0 +1,7 @@
+# Static analysis baseline for the plugin source.
+parameters:
+  level: 5
+  paths:
+    - src
+  checkMissingIterableValueType: false
+  treatPhpDocTypesAsCertain: false

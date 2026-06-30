@@ -1,0 +1,36 @@
+{
+  "name": "grail-hr-nuxt",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nuxt dev --host 0.0.0.0 --port 3000",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "preview:static": "npx serve .output/public",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "nuxt prepare && nuxt typecheck",
+    "lint": "nuxt prepare && eslint ."
+  },
+  "dependencies": {
+    "@nuxtjs/robots": "latest",
+    "@pinia/nuxt": "latest",
+    "@tanstack/vue-table": "latest",
+    "lucide-vue-next": "latest",
+    "nuxt": "latest",
+    "pinia": "latest",
+    "vue": "latest",
+    "zod": "latest"
+  },
+  "devDependencies": {
+    "@nuxt/eslint": "latest",
+    "@nuxt/test-utils": "latest",
+    "@vitejs/plugin-vue": "latest",
+    "@vue/test-utils": "latest",
+    "eslint": "latest",
+    "happy-dom": "latest",
+    "typescript": "latest",
+    "vitest": "latest",
+    "vue-tsc": "latest"
+  }
+}
