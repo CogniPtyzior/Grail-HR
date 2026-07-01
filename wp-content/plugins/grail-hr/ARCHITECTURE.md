@@ -55,7 +55,8 @@ L’erreur technique est consignée dans les logs sécurisés et l’utilisateur
 POST /profiles
 → valider DTO
 → créer CPT profil
-→ créer ligne analyse vide
+→ créer structure d’analyse vide normalisée
+→ créer ligne analyse initiale
 → retourner profil éditable
 ```
 
@@ -67,13 +68,21 @@ Le backend vérifie l’accès Grail HR et génère un token opaque.
 Seul le hash du token est stocké en `wp_user_meta`.
 Les contrôleurs REST imposent le bearer token, l'utilisateur actif et les capabilities avant chaque action protégée.
 
+## Diagramme plugin
+
+![Architecture hexagonale pragmatique de Grail HR](./mermaid-diagram-pragmatic-hexagonal.png)
+
 ## Frontend
 
 Nuxt est une SPA CSR indépendante du thème WordPress.
 En développement, elle tourne sur `http://localhost:3000` et consomme l'API REST réelle du site WordPress DDEV.
-En production, le build Nuxt est déployé comme application frontend dédiée et pointe vers `/wp-json/grail-hr/v1`.
+En production, le build Nuxt peut être déployé comme application frontend dédiée et pointer vers `/wp-json/grail-hr/v1`.
 
-Le design system appartient au plugin. Il ne dépend pas du thème WordPress actif.
+Le design system appartient à l’application Nuxt livrée avec le projet. Il ne dépend pas du thème WordPress actif.
+
+## Diagramme SPA
+
+![Architecture frontend Vue/Nuxt de Grail HR](./frontend/nuxt/mermaid-class-diagram.png)
 
 ## Environnement local
 
